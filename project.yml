@@ -1,0 +1,57 @@
+name: MagpieWidget
+options:
+  bundleIdPrefix: net.bytenote
+  deploymentTarget:
+    macOS: "14.0"
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    MACOSX_DEPLOYMENT_TARGET: "14.0"
+    CODE_SIGN_STYLE: Automatic
+    DEVELOPMENT_TEAM: ""
+    APP_GROUP_IDENTIFIER: $(DEVELOPMENT_TEAM).net.bytenote.MagpieWidget
+    MARKETING_VERSION: "1.0.0"
+    CURRENT_PROJECT_VERSION: "1"
+    ENABLE_HARDENED_RUNTIME: YES
+    GENERATE_INFOPLIST_FILE: NO
+    SWIFT_EMIT_LOC_STRINGS: YES
+targets:
+  MagpieWidget:
+    type: application
+    platform: macOS
+    sources:
+      - MagpieApp
+      - Shared
+      - Resources/Assets.xcassets
+    settings:
+      base:
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        PRODUCT_BUNDLE_IDENTIFIER: net.bytenote.MagpieWidget
+        CODE_SIGN_ENTITLEMENTS: Config/App.entitlements
+        INFOPLIST_FILE: Config/App-Info.plist
+    dependencies:
+      - target: MagpieWidgets
+        embed: true
+  MagpieWidgets:
+    type: app-extension
+    platform: macOS
+    sources:
+      - MagpieWidgets
+      - Shared/Models.swift
+      - Shared/StorageAndClient.swift
+      - Shared/Components.swift
+      - Shared/WidgetPreferences.swift
+      - Resources/Assets.xcassets
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: net.bytenote.MagpieWidget.Widgets
+        CODE_SIGN_ENTITLEMENTS: Config/Widgets.entitlements
+        INFOPLIST_FILE: Config/Widgets-Info.plist
+        APPLICATION_EXTENSION_API_ONLY: YES
+        SKIP_INSTALL: YES
+schemes:
+  MagpieWidget:
+    build:
+      targets:
+        MagpieWidget: all
+        MagpieWidgets: all

@@ -1,0 +1,496 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2C13C6E51F3FBB63870A4199 /* MagpieWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351F45969A6DBA52C5585621 /* MagpieWidgets.swift */; };
+		33B004A786B7BD8C4C0E2DD3 /* MagpieApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEE7DFF177F4095763490A8 /* MagpieApp.swift */; };
+		34053696F8A66959F7866F93 /* WidgetSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E530B9C8D9B5970FE835763 /* WidgetSettings.swift */; };
+		41817149D32E5B09D0DD2324 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB925A865D60D3FA0EDAA629 /* Models.swift */; };
+		4467EE1C14E37D4D9ED07A84 /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8264A584A9A70B01AD29888C /* Components.swift */; };
+		657176E253D6899C733DDC41 /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8264A584A9A70B01AD29888C /* Components.swift */; };
+		6ADC7F9B666E5B424D3E21E2 /* WidgetPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DFCD6CE6B9D07EF9B74956 /* WidgetPreferences.swift */; };
+		976E243CB1E5E6F5EEDBD3EF /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED51BA988B6D68EA368E0D0 /* DashboardView.swift */; };
+		A11939107ACE6A41CEA78078 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFDE608D9B0C1735E1EEDB74 /* Assets.xcassets */; };
+		C4B5656E94E8BB4A4C032BC6 /* MagpieWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 868D9AF40A8400FE7925CC78 /* MagpieWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		CE5A5AA035DB7F3BDB326758 /* StorageAndClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15827D9117EE0D0E3B41F9A5 /* StorageAndClient.swift */; };
+		D06564823A967C95BF1F37A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFDE608D9B0C1735E1EEDB74 /* Assets.xcassets */; };
+		D779449C6778E8E54528837D /* StorageAndClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15827D9117EE0D0E3B41F9A5 /* StorageAndClient.swift */; };
+		EF3CB7C6B646A979170BA97A /* WidgetPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DFCD6CE6B9D07EF9B74956 /* WidgetPreferences.swift */; };
+		F6899375DBC6C043AE1E3D37 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB925A865D60D3FA0EDAA629 /* Models.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		00F57F0EEF6AF34C45DCFA7A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F1B885ED21B94F6B41A8EDE6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0A6C8868F3A158E314DF8992;
+			remoteInfo = MagpieWidgets;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		4768BCB762B2DFE0D101B393 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				C4B5656E94E8BB4A4C032BC6 /* MagpieWidgets.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		15827D9117EE0D0E3B41F9A5 /* StorageAndClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageAndClient.swift; sourceTree = "<group>"; };
+		351F45969A6DBA52C5585621 /* MagpieWidgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagpieWidgets.swift; sourceTree = "<group>"; };
+		6E530B9C8D9B5970FE835763 /* WidgetSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetSettings.swift; sourceTree = "<group>"; };
+		7ED51BA988B6D68EA368E0D0 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		8264A584A9A70B01AD29888C /* Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Components.swift; sourceTree = "<group>"; };
+		868D9AF40A8400FE7925CC78 /* MagpieWidgets.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MagpieWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3BB9AA257BEF525BFABBFF7 /* MagpieWidget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MagpieWidget.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB925A865D60D3FA0EDAA629 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		CCEE7DFF177F4095763490A8 /* MagpieApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagpieApp.swift; sourceTree = "<group>"; };
+		CFDE608D9B0C1735E1EEDB74 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F0DFCD6CE6B9D07EF9B74956 /* WidgetPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetPreferences.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		02BD0530051B889FE7428AFF = {
+			isa = PBXGroup;
+			children = (
+				1B4D7925B88C5D21C12512B4 /* MagpieApp */,
+				E0ED84A76F165A4E33D1C8C2 /* MagpieWidgets */,
+				458B4D43D16DF54D3E6804E8 /* Resources */,
+				3AB22F846A2714AA23FB62CC /* Shared */,
+				AF41719B50F4B8F20D6F2564 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1B4D7925B88C5D21C12512B4 /* MagpieApp */ = {
+			isa = PBXGroup;
+			children = (
+				7ED51BA988B6D68EA368E0D0 /* DashboardView.swift */,
+				CCEE7DFF177F4095763490A8 /* MagpieApp.swift */,
+				6E530B9C8D9B5970FE835763 /* WidgetSettings.swift */,
+			);
+			path = MagpieApp;
+			sourceTree = "<group>";
+		};
+		3AB22F846A2714AA23FB62CC /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				8264A584A9A70B01AD29888C /* Components.swift */,
+				AB925A865D60D3FA0EDAA629 /* Models.swift */,
+				15827D9117EE0D0E3B41F9A5 /* StorageAndClient.swift */,
+				F0DFCD6CE6B9D07EF9B74956 /* WidgetPreferences.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		458B4D43D16DF54D3E6804E8 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CFDE608D9B0C1735E1EEDB74 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		AF41719B50F4B8F20D6F2564 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A3BB9AA257BEF525BFABBFF7 /* MagpieWidget.app */,
+				868D9AF40A8400FE7925CC78 /* MagpieWidgets.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E0ED84A76F165A4E33D1C8C2 /* MagpieWidgets */ = {
+			isa = PBXGroup;
+			children = (
+				351F45969A6DBA52C5585621 /* MagpieWidgets.swift */,
+			);
+			path = MagpieWidgets;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0A6C8868F3A158E314DF8992 /* MagpieWidgets */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7DC16AA93FD0C2FDD289CB38 /* Build configuration list for PBXNativeTarget "MagpieWidgets" */;
+			buildPhases = (
+				223E2681625C6EE2B2251AC5 /* Sources */,
+				FED3EF8C2A7BBFABF5F18405 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MagpieWidgets;
+			packageProductDependencies = (
+			);
+			productName = MagpieWidgets;
+			productReference = 868D9AF40A8400FE7925CC78 /* MagpieWidgets.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		BFB7F6B277FF2F5EB863B8D1 /* MagpieWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E6153675C788901636E5BA29 /* Build configuration list for PBXNativeTarget "MagpieWidget" */;
+			buildPhases = (
+				60C970964A0E2252AE447191 /* Sources */,
+				F24D6467D24420612E6148AC /* Resources */,
+				4768BCB762B2DFE0D101B393 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7EC13DFA1205F23544AC580E /* PBXTargetDependency */,
+			);
+			name = MagpieWidget;
+			packageProductDependencies = (
+			);
+			productName = MagpieWidget;
+			productReference = A3BB9AA257BEF525BFABBFF7 /* MagpieWidget.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F1B885ED21B94F6B41A8EDE6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					0A6C8868F3A158E314DF8992 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+					BFB7F6B277FF2F5EB863B8D1 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = E80F90ED8998E3FB735C0CA1 /* Build configuration list for PBXProject "MagpieWidget" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 02BD0530051B889FE7428AFF;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = AF41719B50F4B8F20D6F2564 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BFB7F6B277FF2F5EB863B8D1 /* MagpieWidget */,
+				0A6C8868F3A158E314DF8992 /* MagpieWidgets */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F24D6467D24420612E6148AC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A11939107ACE6A41CEA78078 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FED3EF8C2A7BBFABF5F18405 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D06564823A967C95BF1F37A7 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		223E2681625C6EE2B2251AC5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				657176E253D6899C733DDC41 /* Components.swift in Sources */,
+				2C13C6E51F3FBB63870A4199 /* MagpieWidgets.swift in Sources */,
+				41817149D32E5B09D0DD2324 /* Models.swift in Sources */,
+				CE5A5AA035DB7F3BDB326758 /* StorageAndClient.swift in Sources */,
+				6ADC7F9B666E5B424D3E21E2 /* WidgetPreferences.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		60C970964A0E2252AE447191 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4467EE1C14E37D4D9ED07A84 /* Components.swift in Sources */,
+				976E243CB1E5E6F5EEDBD3EF /* DashboardView.swift in Sources */,
+				33B004A786B7BD8C4C0E2DD3 /* MagpieApp.swift in Sources */,
+				F6899375DBC6C043AE1E3D37 /* Models.swift in Sources */,
+				D779449C6778E8E54528837D /* StorageAndClient.swift in Sources */,
+				EF3CB7C6B646A979170BA97A /* WidgetPreferences.swift in Sources */,
+				34053696F8A66959F7866F93 /* WidgetSettings.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7EC13DFA1205F23544AC580E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0A6C8868F3A158E314DF8992 /* MagpieWidgets */;
+			targetProxy = 00F57F0EEF6AF34C45DCFA7A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1A0D641284EA9A430BE81F9F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Config/App.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "Config/App-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = net.bytenote.MagpieWidget;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		278A2AC754630E829A3C3DDB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = Config/Widgets.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "Config/Widgets-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = net.bytenote.MagpieWidget.Widgets;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		294494F2BE330513AA65EDBA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				APP_GROUP_IDENTIFIER = "$(DEVELOPMENT_TEAM).net.bytenote.MagpieWidget";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		9C97E63DEE259491CA3CD569 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = Config/Widgets.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "Config/Widgets-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = net.bytenote.MagpieWidget.Widgets;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		A3668071ACBC8F7F152D34DA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				APP_GROUP_IDENTIFIER = "$(DEVELOPMENT_TEAM).net.bytenote.MagpieWidget";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		FA18DD766BF88DB80FE4FB79 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Config/App.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "Config/App-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = net.bytenote.MagpieWidget;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7DC16AA93FD0C2FDD289CB38 /* Build configuration list for PBXNativeTarget "MagpieWidgets" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9C97E63DEE259491CA3CD569 /* Debug */,
+				278A2AC754630E829A3C3DDB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		E6153675C788901636E5BA29 /* Build configuration list for PBXNativeTarget "MagpieWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A0D641284EA9A430BE81F9F /* Debug */,
+				FA18DD766BF88DB80FE4FB79 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		E80F90ED8998E3FB735C0CA1 /* Build configuration list for PBXProject "MagpieWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				294494F2BE330513AA65EDBA /* Debug */,
+				A3668071ACBC8F7F152D34DA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F1B885ED21B94F6B41A8EDE6 /* Project object */;
+}
