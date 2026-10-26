@@ -1,4 +1,8 @@
 name: MagpieWidget
+packages:
+  Sparkle:
+    url: https://github.com/sparkle-project/Sparkle
+    from: 2.10.0
 options:
   bundleIdPrefix: net.bytenote
   deploymentTarget:
@@ -11,7 +15,7 @@ settings:
     DEVELOPMENT_TEAM: ""
     APP_GROUP_IDENTIFIER: $(DEVELOPMENT_TEAM).net.bytenote.MagpieWidget
     MARKETING_VERSION: "1.0.0"
-    CURRENT_PROJECT_VERSION: "1"
+    CURRENT_PROJECT_VERSION: "2"
     ENABLE_HARDENED_RUNTIME: YES
     GENERATE_INFOPLIST_FILE: NO
     SWIFT_EMIT_LOC_STRINGS: YES
@@ -29,9 +33,12 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: net.bytenote.MagpieWidget
         CODE_SIGN_ENTITLEMENTS: Config/App.entitlements
         INFOPLIST_FILE: Config/App-Info.plist
+        LD_RUNPATH_SEARCH_PATHS: "$(inherited) @executable_path/../Frameworks"
     dependencies:
       - target: MagpieWidgets
         embed: true
+      - package: Sparkle
+        product: Sparkle
   MagpieWidgets:
     type: app-extension
     platform: macOS

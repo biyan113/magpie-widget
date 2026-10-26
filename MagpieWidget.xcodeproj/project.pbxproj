@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2C13C6E51F3FBB63870A4199 /* MagpieWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351F45969A6DBA52C5585621 /* MagpieWidgets.swift */; };
+		32B17EB2B2A35C4819D4C312 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = FEF80C388C9A283B5C881900 /* Sparkle */; };
 		33B004A786B7BD8C4C0E2DD3 /* MagpieApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEE7DFF177F4095763490A8 /* MagpieApp.swift */; };
 		34053696F8A66959F7866F93 /* WidgetSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E530B9C8D9B5970FE835763 /* WidgetSettings.swift */; };
 		41817149D32E5B09D0DD2324 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB925A865D60D3FA0EDAA629 /* Models.swift */; };
@@ -61,6 +62,17 @@
 		CFDE608D9B0C1735E1EEDB74 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F0DFCD6CE6B9D07EF9B74956 /* WidgetPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetPreferences.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		32969D0E8B0893742799821A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32B17EB2B2A35C4819D4C312 /* Sparkle in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		02BD0530051B889FE7428AFF = {
@@ -147,6 +159,7 @@
 			buildPhases = (
 				60C970964A0E2252AE447191 /* Sources */,
 				F24D6467D24420612E6148AC /* Resources */,
+				32969D0E8B0893742799821A /* Frameworks */,
 				4768BCB762B2DFE0D101B393 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
@@ -156,6 +169,7 @@
 			);
 			name = MagpieWidget;
 			packageProductDependencies = (
+				FEF80C388C9A283B5C881900 /* Sparkle */,
 			);
 			productName = MagpieWidget;
 			productReference = A3BB9AA257BEF525BFABBFF7 /* MagpieWidget.app */;
@@ -189,6 +203,9 @@
 			);
 			mainGroup = 02BD0530051B889FE7428AFF;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				5906D656714E3BACCD897EED /* XCRemoteSwiftPackageReference "Sparkle" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = AF41719B50F4B8F20D6F2564 /* Products */;
 			projectDirPath = "";
@@ -264,10 +281,7 @@
 				CODE_SIGN_ENTITLEMENTS = Config/App.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "Config/App-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.bytenote.MagpieWidget;
 				SDKROOT = macosx;
 			};
@@ -327,7 +341,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -416,7 +430,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -451,10 +465,7 @@
 				CODE_SIGN_ENTITLEMENTS = Config/App.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "Config/App-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.bytenote.MagpieWidget;
 				SDKROOT = macosx;
 			};
@@ -491,6 +502,25 @@
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5906D656714E3BACCD897EED /* XCRemoteSwiftPackageReference "Sparkle" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sparkle-project/Sparkle";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.10.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FEF80C388C9A283B5C881900 /* Sparkle */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5906D656714E3BACCD897EED /* XCRemoteSwiftPackageReference "Sparkle" */;
+			productName = Sparkle;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F1B885ED21B94F6B41A8EDE6 /* Project object */;
 }

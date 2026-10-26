@@ -3,6 +3,8 @@
 build/
 dist/
 site/*.zip
+site/*.delta
+site/old_updates/
 .cloudflare/
 DerivedData/
 *.xcuserstate

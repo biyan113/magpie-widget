@@ -18,4 +18,5 @@ put index.html "$SITE/index.html" "text/html; charset=utf-8"
 put assets/widget-small.png "$SITE/assets/widget-small.png" "image/png"
 put assets/gateway.png "$SITE/assets/gateway.png" "image/png"
 put "$ZIP_NAME" "$SITE/$ZIP_NAME" "application/zip"
+put appcast.xml "$SITE/appcast.xml" "application/xml; charset=utf-8"
 printf 'Published https://magpie-widget.bytenote.net/\n'

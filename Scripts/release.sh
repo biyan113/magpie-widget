@@ -25,13 +25,18 @@ sign_with_timestamp() {
   local target="$1"
   local entitlements
   entitlements="$(mktemp)"
-  codesign -d --entitlements :- "$target" >"$entitlements" 2>/dev/null
-  codesign --force --sign "Developer ID Application: WEI PAN (${TEAM})" \
-    --timestamp --options runtime --entitlements "$entitlements" "$target"
+  if codesign -d --entitlements :- "$target" >"$entitlements" 2>/dev/null && grep -q '<key>' "$entitlements"; then
+    codesign --force --sign "Developer ID Application: WEI PAN (${TEAM})" \
+      --timestamp --options runtime --entitlements "$entitlements" "$target"
+  else
+    codesign --force --sign "Developer ID Application: WEI PAN (${TEAM})" \
+      --timestamp --options runtime "$target"
+  fi
   rm -f "$entitlements"
 }
-sign_with_timestamp "$APP/Contents/PlugIns/MagpieWidgets.appex"
-sign_with_timestamp "$APP"
+while IFS= read -r item; do
+  sign_with_timestamp "$item"
+done < <(find "$APP" -depth \( -name '*.xpc' -o -name '*.appex' -o -name '*.framework' -o -name 'Autoupdate' -o -name '*.app' \))
 codesign --verify --deep --strict "$APP"
 if codesign -d --entitlements :- "$APP" 2>/dev/null | grep -q 'get-task-allow'; then
   echo "拒绝公证：签名里带有 get-task-allow。" >&2
@@ -47,6 +52,8 @@ rm -f "$ZIP"
 ditto -c -k --keepParent "$APP" "$ZIP"
 mkdir -p site
 cp "$ZIP" site/MagpieWidget-1.0.0.zip
+SPARKLE_BIN="${SPARKLE_BIN:-/Volumes/EXTEND/MacAppKit-Starter/build/DerivedData/SourcePackages/artifacts/sparkle/Sparkle/bin/generate_appcast}"
+"$SPARKLE_BIN" --account net.bytenote.MagpieWidget --download-url-prefix https://magpie-widget.bytenote.net/ site
 bash Scripts/publish-r2.sh
 
 osascript -e 'tell application id "net.bytenote.MagpieWidget" to quit' >/dev/null 2>&1 || true

@@ -1,3 +1,4 @@
+import Sparkle
 import SwiftUI
 import WidgetKit
 import Security
@@ -109,13 +110,18 @@ struct GatewayKeychain {
     }
 }
 
+final class UpdateController: ObservableObject {
+    let controller = SPUStandardUpdaterController(startingUpdater: true, updaterDelegate: nil, userDriverDelegate: nil)
+}
+
 @main struct MagpieWidgetApp: App {
     @StateObject private var sync = DataSyncService()
+    @StateObject private var updates = UpdateController()
     @AppStorage("showMenuBar") private var showMenuBar = true
     @AppStorage("appearance") private var appearance = "system"
     var body: some Scene {
         Window("Magpie Widget", id: "dashboard") {
-            DashboardView().environmentObject(sync)
+            DashboardView().environmentObject(sync).environmentObject(updates)
                 .preferredColorScheme(appearance == "dark" ? .dark : appearance == "light" ? .light : nil)
                 .task { sync.start() }
                 .onOpenURL { url in
@@ -124,8 +130,13 @@ struct GatewayKeychain {
                     if url.host == "refresh" { Task { await sync.refresh(reloadWidget: true) } }
                 }
         }.defaultSize(width: 1030, height: 740)
-        Settings { SettingsView().environmentObject(sync) }
-        MenuBarExtra(isInserted: $showMenuBar) { MenuPanel().environmentObject(sync) } label: {
+        .commands {
+            CommandGroup(after: .appInfo) {
+                Button("检查更新…") { updates.controller.checkForUpdates(nil) }
+            }
+        }
+        Settings { SettingsView().environmentObject(sync).environmentObject(updates) }
+        MenuBarExtra(isInserted: $showMenuBar) { MenuPanel().environmentObject(sync).environmentObject(updates) } label: {
             Label(menuTitle, systemImage: "bird.fill")
         }.menuBarExtraStyle(.window)
     }
@@ -138,6 +149,7 @@ struct GatewayKeychain {
 }
 struct MenuPanel: View {
     @EnvironmentObject var sync: DataSyncService
+    @EnvironmentObject var updates: UpdateController
     @Environment(\.openWindow) var openWindow
     var body: some View {
         VStack(alignment: .leading, spacing: 14) {
@@ -151,6 +163,7 @@ struct MenuPanel: View {
             }
             HStack {
                 Button("设置") { sync.screen = "settings"; openWindow(id: "dashboard"); NSApp.activate(ignoringOtherApps: true) }
+                Button("检查更新…") { updates.controller.checkForUpdates(nil) }
                 Spacer()
                 Button("退出") { NSApp.terminate(nil) }
             }.font(.caption)

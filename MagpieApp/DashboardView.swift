@@ -110,6 +110,7 @@ struct DashboardView: View {
 }
 struct SettingsView: View {
     @EnvironmentObject var sync: DataSyncService
+    @EnvironmentObject var updates: UpdateController
     @State private var endpoint = ""
     @State private var interval = 60.0
     @State private var token = ""
@@ -132,6 +133,10 @@ struct SettingsView: View {
                 if let message { Text(message).font(.caption) }
             }
             WidgetSettingsSections()
+            Section("更新") {
+                Button("检查更新…") { updates.controller.checkForUpdates(nil) }
+                Text("已安装的版本会从 magpie-widget.bytenote.net 的更新清单下载新版本并替换自己。")
+            }
             Section("外观与启动") {
                 Picker("外观", selection: $appearance) { Text("跟随系统").tag("system"); Text("浅色").tag("light"); Text("深色").tag("dark") }
                 Toggle("显示菜单栏", isOn: $showMenuBar)

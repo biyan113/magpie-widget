@@ -81,7 +81,7 @@ xcrun notarytool store-credentials magpie-notary \
 bash Scripts/release.sh
 ```
 
-`Scripts/release.sh` 会打 Release、提交公证、把票据订进 app，替换 `~/Applications/MagpieWidget.app`，再调用 `Scripts/publish-r2.sh`。发布页和安装包上传到 R2 桶 `magpie-widget`，地址是 https://magpie-widget.bytenote.net/ 。密码只留在钥匙串配置 `magpie-notary` 里。只改页面时单独运行 `bash Scripts/publish-r2.sh`。
+`Scripts/release.sh` 会打 Release、提交公证、把票据订进 app，替换 `~/Applications/MagpieWidget.app`，生成 Sparkle 更新清单，再调用 `Scripts/publish-r2.sh`。发布页、安装包和 `appcast.xml` 上传到 R2 桶 `magpie-widget`。已安装的应用从 https://magpie-widget.bytenote.net/appcast.xml 检查更新。更新签名私钥只在登录钥匙串账户 `net.bytenote.MagpieWidget`。公证密码只留在钥匙串配置 `magpie-notary` 里。只改页面时单独运行 `bash Scripts/publish-r2.sh`。
 
 ## 数据与安全
 
