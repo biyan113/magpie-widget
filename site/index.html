@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f4f5f1">
+<meta name="description" content="Magpie Widget，把本机 Magpie 的 AI 用量放上 macOS 桌面。只读连接，小、中、大号小组件。">
+<title>Magpie Widget — 额度放在桌面上</title>
+<style>
+:root{--ink:#171a17;--muted:#70766f;--paper:#f4f5f1;--lime:#c8f36b;--line:#dfe2da;--dark:#151914;--serif:Georgia,'Times New Roman',serif}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','PingFang SC','Microsoft YaHei',sans-serif}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1180px;margin:auto;padding:0 34px}
+.nav{height:78px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+.brand{display:flex;gap:11px;align-items:center;font-weight:720;letter-spacing:-.04em;font-size:21px}
+.mark{width:30px;height:30px;border-radius:10px;background:var(--ink);color:var(--lime);display:grid;place-items:center;font-size:15px}
+.navlinks{display:flex;gap:32px;color:#60665e;font-size:13px}
+.navlinks a:hover{color:#111}
+.nav-cta,.button{background:var(--ink);color:white;border-radius:999px;padding:12px 19px;font-size:13px;font-weight:600}
+.hero{padding:94px 0 66px;display:grid;grid-template-columns:1fr 1.15fr;gap:44px;align-items:center}
+.eyebrow{font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:#64764d;display:flex;align-items:center;gap:9px}
+.eyebrow:before{content:'';width:20px;height:1px;background:#64764d}
+h1{font-size:clamp(52px,7.4vw,92px);letter-spacing:-.075em;line-height:.99;margin:26px 0 24px;font-weight:650}
+h1 em{font-family:var(--serif);font-weight:400;letter-spacing:-.08em}
+.lede{max-width:450px;font-size:17px;line-height:1.85;color:#666d64}
+.hero-actions{display:flex;align-items:center;gap:22px;margin-top:32px}
+.textlink{font-size:13px;font-weight:600;border-bottom:1px solid #899082;padding-bottom:4px}
+.fine{margin-top:22px;color:#858b82;font-size:11px}
+.hero-visual{position:relative}
+.hero-visual img{width:100%;height:auto;display:block;border-radius:22px;box-shadow:0 24px 70px #20271d22}
+.float-tag{position:absolute;z-index:2;left:18px;bottom:18px;background:white;padding:13px 17px;border-radius:12px;box-shadow:0 8px 28px #20271d18;font-size:11px;color:var(--muted)}
+.float-tag b{display:block;color:var(--ink);font-size:14px;margin-bottom:3px}
+.ticker{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:19px 0;display:flex;justify-content:space-between;gap:14px;color:#777d74;font-size:11px;letter-spacing:.05em}
+.ticker span{white-space:nowrap}
+.ticker strong{color:#252a23;font-weight:650}
+.section{padding:108px 0}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:42px}
+.kicker{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#78856a;font-weight:700}
+.section h2{font-size:clamp(36px,5vw,58px);letter-spacing:-.065em;line-height:1.08;margin:16px 0 0;font-weight:630}
+.section-head p{max-width:330px;color:var(--muted);font-size:14px;line-height:1.8;margin:0}
+.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
+.feature{background:#fff;border:1px solid #eaede6;border-radius:16px;padding:25px;min-height:194px}
+.feature .num{color:#89947c;font-size:11px;letter-spacing:.1em}
+.feature h3{font-size:18px;letter-spacing:-.035em;margin:28px 0 9px}
+.feature p{font-size:12px;line-height:1.8;color:var(--muted);margin:0}
+.dark{background:var(--dark);color:#f5f6f1}
+.dark .kicker{color:var(--lime)}
+.dark .section-head p,.deep-copy p{color:#a5aca1}
+.deep-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:54px;align-items:center}
+.deep-copy h2{font-size:clamp(40px,5vw,62px);line-height:1.06;letter-spacing:-.065em;margin:17px 0 21px}
+.deep-copy p{line-height:1.85;font-size:14px}
+.checklist{list-style:none;padding:8px 0 0;margin:0}
+.checklist li{border-top:1px solid #363d35;padding:13px 0;color:#d0d5cd;font-size:12px;display:flex;gap:10px}
+.checklist li:before{content:'↗';color:var(--lime)}
+.stage{margin-top:34px;border-radius:32px;padding:36px 28px 28px;background:radial-gradient(70% 46% at 50% 0%,rgba(200,243,107,.34),transparent 62%),linear-gradient(180deg,#243022 0%,#141915 55%,#10140f 100%);box-shadow:0 28px 70px #1a201614}
+.stage-note{margin:0 0 22px;color:#c8f36b;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase}
+.stage figure{margin:0 auto;max-width:760px}
+.stage img{width:100%;height:auto;display:block;border-radius:16px;box-shadow:0 26px 60px #000c,0 0 0 1px rgba(255,255,255,.1)}
+.stage figcaption{margin-top:12px;color:#d5dec8;font-size:12px;letter-spacing:.06em}
+.stage figure{opacity:0;transform:translateY(48px);transition:opacity .8s ease,transform .8s ease}
+.stage figure.in{opacity:1;transform:none}
+@supports (animation-timeline:view()){
+  .stage figure{opacity:1;transform:none;transition:none;animation:shotIn linear both;animation-timeline:view();animation-range:entry 0% cover 32%}
+}
+@keyframes shotIn{from{opacity:0;transform:translateY(56px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.stage figure{opacity:1;transform:none;animation:none;transition:none}}
+.quote{padding:95px 0;background:#e9ede3}
+.quote-grid{display:grid;grid-template-columns:1fr 1fr;gap:45px;align-items:center}
+.quote blockquote{margin:0;font-family:var(--serif);font-size:clamp(30px,4vw,46px);letter-spacing:-.04em;line-height:1.2}
+.quote p{color:var(--muted);font-size:14px;line-height:1.9}
+.specs{padding:88px 0}
+.spec-grid{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);margin-top:36px}
+.spec{padding:22px 12px 22px 0;border-bottom:1px solid var(--line)}
+.spec small{font-size:10px;color:#858b82;letter-spacing:.1em}
+.spec strong{display:block;font-size:14px;margin-top:10px}
+.closing{background:var(--lime);padding:76px 0}
+.closing-inner{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.closing h2{margin:0;font-size:clamp(38px,5vw,60px);letter-spacing:-.07em;line-height:1.05}
+.closing p{margin:12px 0 0;color:#46513a;font-size:13px}
+.closing .button{background:var(--ink)}
+footer{padding:26px 0;display:flex;justify-content:space-between;align-items:center;color:#838a80;font-size:11px}
+.foot-brand{color:var(--ink);font-weight:700;font-size:15px}
+@media(max-width:760px){
+  .wrap{padding:0 20px}
+  .nav{height:66px}
+  .navlinks{display:none}
+  .nav-cta{font-size:11px;padding:10px 14px}
+  .hero{grid-template-columns:1fr;padding:67px 0 45px;gap:32px}
+  .ticker{overflow:hidden;justify-content:flex-start;gap:24px}
+  .section{padding:75px 0}
+  .section-head{display:block}
+  .section-head p{margin-top:20px}
+  .feature-grid{grid-template-columns:1fr}
+  .feature{min-height:unset}
+  .feature h3{margin-top:18px}
+  .deep-grid,.quote-grid{grid-template-columns:1fr;gap:34px}
+  .spec-grid{grid-template-columns:repeat(2,1fr)}
+  .closing-inner{align-items:flex-start;flex-direction:column}
+  .closing{padding:57px 0}
+  footer{gap:16px;flex-wrap:wrap}
+}
+</style>
+</head>
+<body>
+<header class="wrap">
+<nav class="nav">
+  <a class="brand" href="#top"><span class="mark">M</span>Magpie Widget</a>
+  <div class="navlinks"><a href="#features">功能</a><a href="#shots">界面</a><a href="#about">关于</a><a href="https://github.com/biyan113/magpie-widget">源码</a></div>
+  <a class="nav-cta" href="https://magpie-widget.bytenote.net/MagpieWidget-1.0.0.zip">下载</a>
+</nav>
+</header>
+<main id="top">
+<section class="wrap hero">
+  <div>
+    <div class="eyebrow">AI usage, on the desktop</div>
+    <h1>额度放在桌面上。<br><em>不用再点开。</em></h1>
+    <p class="lede">Magpie Widget 只读连接本机 Magpie，把 Cursor、Codex、Grok 这些订阅的剩余额度做成 macOS 桌面小组件。</p>
+    <div class="hero-actions">
+      <a class="button" href="https://magpie-widget.bytenote.net/MagpieWidget-1.0.0.zip">下载 1.0.0</a>
+      <a class="textlink" href="#features">看看它做什么</a>
+    </div>
+    <div class="fine">原生 macOS 应用 · macOS 14 及以上 · Developer ID 已公证</div>
+  </div>
+  <div class="hero-visual">
+    <img src="assets/widget-small.png" alt="桌面小号小组件，显示 Codex 剩余 100%">
+    <div class="float-tag"><b>小号组件</b>剩余额度 · 重置时间 · 同步时刻</div>
+  </div>
+</section>
+<div class="wrap ticker">
+  <span><strong>WIDGET</strong> 小 · 中 · 大</span>
+  <span><strong>GATEWAY</strong> 只读本机 Magpie</span>
+  <span><strong>REFRESH</strong> 约每 20 分钟</span>
+  <span><strong>MENU BAR</strong> 关闭窗口仍在</span>
+</div>
+<section class="wrap section" id="features">
+  <div class="section-head">
+    <div>
+      <div class="kicker">On the desktop</div>
+      <h2>抬眼就能看见<br>还剩多少。</h2>
+    </div>
+    <p>主应用负责去 Magpie 取数。桌面小组件只显示你留下的那一份快照，不改路由、账户或 Agent。</p>
+  </div>
+  <div class="feature-grid">
+    <article class="feature"><span class="num">01 / WIDGET</span><h3>三种尺寸</h3><p>小、中、大号都能加到桌面。小号点订阅名旁边的箭头，直接轮换要看的订阅。</p></article>
+    <article class="feature"><span class="num">02 / READ ONLY</span><h3>只读连接</h3><p>读取本机网关的额度、用量和请求。密钥留在钥匙串。不写入 Magpie 的配置。</p></article>
+    <article class="feature"><span class="num">03 / DISPLAY</span><h3>显示你来定</h3><p>订阅、指标、时间范围、费用、Token 和趋势图，都在主应用里开关。改完会请求刷新。</p></article>
+  </div>
+</section>
+<section class="wrap section" id="shots">
+  <div class="section-head">
+    <div>
+      <div class="kicker">The interface</div>
+      <h2>打开就能接上。</h2>
+    </div>
+    <p>第一次打开会找本机 Magpie 的端口。地址、同步间隔和钥匙串里的密钥，都在这一页。</p>
+  </div>
+  <div class="stage">
+    <p class="stage-note">Gateway</p>
+    <figure>
+      <img src="assets/gateway.png" alt="Gateway 连接设置，地址为本机 3425 端口">
+      <figcaption>Gateway 连接</figcaption>
+    </figure>
+  </div>
+</section>
+<section class="dark section" id="refresh">
+  <div class="wrap deep-grid">
+    <div class="deep-copy">
+      <div class="kicker">Within the budget</div>
+      <h2>桌面会更新。<br>但不是每分钟。</h2>
+      <p>WidgetKit 每天大约给 72 次刷新。小组件按这个上限，大约每 20 分钟读一次最新快照。</p>
+      <ul class="checklist">
+        <li>主应用按你设的间隔把额度写入快照</li>
+        <li>定时同步不再每分钟叫醒小组件</li>
+        <li>点右上角刷新，会立刻再要一张</li>
+        <li>Magpie 不在时，保留上次的数字并标明离线</li>
+      </ul>
+    </div>
+    <div class="screen-stack">
+      <img src="assets/widget-small.png" alt="同步于固定时刻的小号小组件" style="width:100%;border-radius:18px;display:block;box-shadow:0 24px 80px #0008">
+    </div>
+  </div>
+</section>
+<section class="quote">
+  <div class="wrap quote-grid">
+    <blockquote>“打开桌面，<br>就知道还剩多少。”</blockquote>
+    <div>
+      <div class="kicker">Native by design</div>
+      <p>SwiftUI、WidgetKit、App Intents。没有 Electron，也没有第三方运行时。它只做 Magpie 用量的桌面视图。</p>
+    </div>
+  </div>
+</section>
+<section class="wrap specs" id="about">
+  <div class="kicker">Made for macOS</div>
+  <h2 style="font-size:42px;letter-spacing:-.06em;margin:14px 0 0">签过名，可以直接打开。</h2>
+  <div class="spec-grid">
+    <div class="spec"><small>PLATFORM</small><strong>macOS 14+</strong></div>
+    <div class="spec"><small>ARCHITECTURE</small><strong>Apple 芯片 + Intel</strong></div>
+    <div class="spec"><small>BUILT WITH</small><strong>SwiftUI + WidgetKit</strong></div>
+    <div class="spec"><small>DISTRIBUTION</small><strong>Developer ID · 已公证</strong></div>
+  </div>
+</section>
+<section class="closing" id="download">
+  <div class="wrap closing-inner">
+    <div>
+      <h2>把用量留在桌面上。</h2>
+      <p>Magpie Widget 1.0.0 · macOS 14 及以上 · Apple 芯片与 Intel</p>
+      <p><a href="https://magpie-widget.bytenote.net/MagpieWidget-1.0.0.zip">https://magpie-widget.bytenote.net/MagpieWidget-1.0.0.zip</a></p>
+    </div>
+    <a class="button" href="https://magpie-widget.bytenote.net/MagpieWidget-1.0.0.zip">下载 Magpie Widget</a>
+  </div>
+</section>
+</main>
+<footer class="wrap">
+  <span class="foot-brand">M Magpie Widget</span>
+  <span>只读连接本机 Magpie 的桌面用量。</span>
+  <span>macOS 14+ · Universal</span>
+  <a href="https://www.bytenote.net">@字节笔记本</a>
+</footer>
+<script>
+(function(){
+  if(window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;
+  if(CSS.supports("animation-timeline","view()"))return;
+  var figs=[].slice.call(document.querySelectorAll(".stage figure"));
+  if(!("IntersectionObserver" in window)){figs.forEach(function(f){f.classList.add("in")});return;}
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}});
+  },{threshold:0.28});
+  figs.forEach(function(f){io.observe(f);});
+})();
+</script>
+</body>
+</html>

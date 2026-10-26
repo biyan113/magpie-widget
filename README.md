@@ -1,6 +1,6 @@
 # Magpie Widget
 
-详细见字节笔记本微信公众号。
+详细见字节笔记本微信公众号。发布页：https://magpie-widget.bytenote.net/
 
 原生 macOS 14+ AI 用量仪表盘与桌面小组件。SwiftUI、WidgetKit、App Intents、Swift Charts，无第三方运行时依赖。只读连接 [Magpie](https://github.com/yetone/magpie)，不修改路由、账户、Agent 或数据库。
 
@@ -73,7 +73,15 @@ open build/Build/Products/Debug/MagpieWidget.app
 
 如果组织使用已注册的 `group.*` 容器，请用 `APP_GROUP_IDENTIFIER=group.your.identifier` 覆盖，并为两个 bundle ID 配置对应的 provisioning profile。不能只改一端。构建会将同一变量展开到两个 entitlements 和两个 Info.plist 的 `SharedAppGroup`。
 
-本地开发证书构建并非可向所有用户分发的公证版本。正式分发还需要 Developer ID 签名、notarization、stapling，或按 Mac App Store 规则调整沙盒及端口文件授权。
+本地开发证书构建不能发给别人。正式分发用 Developer ID 签名、公证并装订：
+
+```sh
+xcrun notarytool store-credentials magpie-notary \
+  --apple-id "$APPLE_ID" --team-id "$DEVELOPMENT_TEAM" --password "$APPLE_PASSWORD"
+bash Scripts/release.sh
+```
+
+`Scripts/release.sh` 会打 Release、提交公证、把票据订进 app，替换 `~/Applications/MagpieWidget.app`，再调用 `Scripts/publish-r2.sh`。发布页和安装包上传到 R2 桶 `magpie-widget`，地址是 https://magpie-widget.bytenote.net/ 。密码只留在钥匙串配置 `magpie-notary` 里。只改页面时单独运行 `bash Scripts/publish-r2.sh`。
 
 ## 数据与安全
 

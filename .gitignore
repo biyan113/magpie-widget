@@ -2,6 +2,8 @@
 .build/
 build/
 dist/
+site/*.zip
+.cloudflare/
 DerivedData/
 *.xcuserstate
 xcuserdata/
