@@ -32,7 +32,7 @@ struct DashboardView: View {
                 ToolbarItem {
                     HStack {
                         if sync.syncing { ProgressView().controlSize(.small) }
-                        Button { Task { await sync.refresh() } } label: { Label("刷新", systemImage: "arrow.clockwise") }.disabled(sync.syncing).help("读取 Magpie 并请求刷新桌面小组件")
+                        Button { Task { await sync.refresh(reloadWidget: true) } } label: { Label("刷新", systemImage: "arrow.clockwise") }.disabled(sync.syncing).help("读取 Magpie 并请求刷新桌面小组件")
                     }
                 }
             }

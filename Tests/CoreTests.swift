@@ -55,6 +55,11 @@ final class CoreTests: XCTestCase {
         XCTAssertEqual(store.load().updatedAt, original.updatedAt)
         XCTAssertThrowsError(try SnapshotStore(directory: nil).save(original))
     }
+    func testDesktopWidgetRefreshStaysInsideDailyBudget() {
+        XCTAssertEqual(DesktopWidget.kind, "MagpieDesktopWidget")
+        XCTAssertEqual(DesktopWidget.timelineInterval, 20 * 60)
+        XCTAssertLessThanOrEqual(86_400 / DesktopWidget.timelineInterval, 72)
+    }
     func testStalenessAndStatus() {
         var snapshot = Snapshot()
         XCTAssertTrue(snapshot.stale())

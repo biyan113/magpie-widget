@@ -34,7 +34,7 @@ struct GatewayKeychain {
     @Published var interval: Double
     @Published var widgetPreferences: WidgetPreferences {
         didSet {
-            do { try WidgetPreferencesStore().save(widgetPreferences); WidgetCenter.shared.reloadAllTimelines() }
+            do { try WidgetPreferencesStore().save(widgetPreferences); WidgetCenter.shared.reloadTimelines(ofKind: DesktopWidget.kind) }
             catch { storageIssue = "无法保存小组件设置，请检查 App Group 配置。" }
         }
     }
@@ -49,11 +49,12 @@ struct GatewayKeychain {
     }
     func start() {
         guard loop == nil else { return }
-        loop = Task { [weak self] in
-            while !Task.isCancelled {
-                guard let self else { return }
-                await refresh()
-                let delay = min(900, interval * pow(2, Double(min(failures, 4))))
+        loop = Task.detached { @MainActor [weak self] in
+            var installTimeline = true
+            while let self, !Task.isCancelled {
+                await self.refresh(reloadWidget: installTimeline)
+                installTimeline = false
+                let delay = min(900, self.interval * pow(2, Double(min(self.failures, 4))))
                 try? await Task.sleep(for: .seconds(delay))
             }
         }
@@ -65,11 +66,11 @@ struct GatewayKeychain {
         UserDefaults.standard.set(endpoint, forKey: "endpoint")
         UserDefaults.standard.set(self.interval, forKey: "interval")
         // Do not show one gateway's data under a different endpoint.
-        if snapshot.endpoint != endpoint { snapshot = Snapshot(); snapshot.endpoint = endpoint; persist() }
+        if snapshot.endpoint != endpoint { snapshot = Snapshot(); snapshot.endpoint = endpoint; persist(reloadWidget: false) }
         failures = 0
-        Task { await refresh() }
+        Task { await refresh(reloadWidget: true) }
     }
-    func refresh() async {
+    func refresh(reloadWidget: Bool = false) async {
         guard !syncing else { return }
         syncing = true
         defer { syncing = false }
@@ -91,8 +92,8 @@ struct GatewayKeychain {
             if issues.isEmpty { next.updatedAt = Date(); next.issue = nil; failures = 0 }
             else { next.issue = issues.joined(separator: "\n"); failures += 1 }
         } catch { next.issue = safeError(error); failures += 1 }
-        guard endpoint == requestedEndpoint else { Task { await refresh() }; return }
-        snapshot = next; persist()
+        guard endpoint == requestedEndpoint else { Task { await refresh(reloadWidget: reloadWidget) }; return }
+        snapshot = next; persist(reloadWidget: reloadWidget)
     }
     private func safeError(_ error: Error) -> String {
         if let e = error as? GatewayError { return e.localizedDescription }
@@ -100,10 +101,11 @@ struct GatewayKeychain {
         if let e = error as? URLError { return "网络连接失败（\(e.code.rawValue)），请确认 Magpie 正在运行。" }
         return "读取失败，保留上次有效数据。"
     }
-    private func persist() {
+    private func persist(reloadWidget: Bool) {
         do { try store.save(snapshot); storageIssue = nil }
-        catch { storageIssue = "无法写入 App Group。请检查签名团队和共享容器配置。" }
-        WidgetCenter.shared.reloadAllTimelines()
+        catch { storageIssue = "无法写入 App Group。请检查签名团队和共享容器配置。"; return }
+        guard reloadWidget else { return }
+        WidgetCenter.shared.reloadTimelines(ofKind: DesktopWidget.kind)
     }
 }
 
@@ -119,7 +121,7 @@ struct GatewayKeychain {
                 .onOpenURL { url in
                     guard url.scheme == "magpiewidget" else { return }
                     sync.screen = url.host == "usage" ? "usage" : url.host == "settings" ? "settings" : "overview"
-                    if url.host == "refresh" { Task { await sync.refresh() } }
+                    if url.host == "refresh" { Task { await sync.refresh(reloadWidget: true) } }
                 }
         }.defaultSize(width: 1030, height: 740)
         Settings { SettingsView().environmentObject(sync) }
@@ -144,7 +146,7 @@ struct MenuPanel: View {
             ForEach(Array(sync.snapshot.quotas.prefix(3))) { QuotaCard(quota: $0, compact: true) }
             if let date = sync.snapshot.updatedAt { Text("同步于 \(date.formatted(date: .omitted, time: .shortened))").font(.caption) }
             HStack {
-                Button("刷新", systemImage: "arrow.clockwise") { Task { await sync.refresh() } }.disabled(sync.syncing)
+                Button("刷新", systemImage: "arrow.clockwise") { Task { await sync.refresh(reloadWidget: true) } }.disabled(sync.syncing)
                 Button("打开概览") { sync.screen = "overview"; openWindow(id: "dashboard"); NSApp.activate(ignoringOtherApps: true) }
             }
             HStack {

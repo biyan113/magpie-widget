@@ -117,3 +117,8 @@ public enum Display {
     public static func number(_ n: Int?) -> String { n.map { $0.formatted(.number.notation(.compactName)) } ?? "—" }
     public static func money(_ n: Double?) -> String { n.map { $0.formatted(.currency(code: "USD")) } ?? "—" }
 }
+public enum DesktopWidget {
+    public static let kind = "MagpieDesktopWidget"
+    /// 24h / 20min = 72, the WidgetKit daily reload ceiling. Asking more often gets later requests dropped.
+    public static let timelineInterval: TimeInterval = 20 * 60
+}

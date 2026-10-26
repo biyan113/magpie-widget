@@ -46,7 +46,7 @@ struct CycleSubscriptionIntent: AppIntent {
         let defaults = UserDefaults(suiteName: SnapshotStore.groupID)
         let current = defaults?.integer(forKey: selectionKey) ?? 0
         defaults?.set((current + 1) % max(1, count), forKey: selectionKey)
-        WidgetCenter.shared.reloadTimelines(ofKind: "MagpieDesktopWidget")
+        WidgetCenter.shared.reloadTimelines(ofKind: DesktopWidget.kind)
         return .result()
     }
 }
@@ -62,8 +62,7 @@ struct Provider: AppIntentTimelineProvider {
     func snapshot(for configuration: ConfigurationIntent, in context: Context) async -> Entry { makeEntry(configuration) }
     func timeline(for configuration: ConfigurationIntent, in context: Context) async -> Timeline<Entry> {
         let current = makeEntry(configuration)
-        var stale = current; stale.date = current.date.addingTimeInterval(181)
-        return Timeline(entries: [current, stale], policy: .after(current.date.addingTimeInterval(900)))
+        return Timeline(entries: [current], policy: .after(current.date.addingTimeInterval(DesktopWidget.timelineInterval)))
     }
     private func makeEntry(_ configuration: ConfigurationIntent) -> Entry {
         Entry(date: Date(), snapshot: SnapshotStore().load(), configuration: configuration,
@@ -239,7 +238,7 @@ struct WidgetQuotaRow: View {
     }
 }
 struct MagpieDesktopWidget: Widget {
-    let kind = "MagpieDesktopWidget"
+    let kind = DesktopWidget.kind
     var body: some WidgetConfiguration {
         AppIntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { WidgetContent(entry: $0) }
             .configurationDisplayName("Magpie Widget")
